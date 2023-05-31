@@ -25,11 +25,11 @@ const products = [
 ];
 
 function start() {
-  showProduct();
-
   document
     .querySelector("#create-form")
     .addEventListener("submit", createNewProduct);
+
+  showProduct();
 }
 
 function showProduct() {
@@ -68,7 +68,11 @@ function createNewProduct(event) {
 
   products.push(newproduct);
   console.log(newproduct);
+<<<<<<< Updated upstream
   showProduct(newproduct);
+=======
+  showProduct();
+>>>>>>> Stashed changes
 }
 
 /*

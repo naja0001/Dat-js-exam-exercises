@@ -44,15 +44,16 @@ function showProducts(products) {
 }
 
 function addToBasket(product) {
-  console.log(product);
-  basket.push(product);
-
   //vi skal clear the basket hver gang vi tilføjer et nyt roduct
   //ellers vil den loope hele procutet og dublikere de samme produter igen og igen.
+<<<<<<< Updated upstream
 
   //vi skal kunne indsætte det i t-body - når tbody er det tr
   //hvis vi gør det som li tilføjer den efter t-body
   document.querySelector("#basket tbody").innerHTML = "";
+=======
+  document.querySelector("#basket").innerHTML = "";
+>>>>>>> Stashed changes
 
   for (const product of basket) {
     const myhtml = /*html */ `
@@ -69,6 +70,9 @@ function addToBasket(product) {
     `;
     document.querySelector("#basket").insertAdjacentHTML("beforeend", myhtml);
   }
+
+  console.log(product);
+  basket.push(product);
 }
 
 

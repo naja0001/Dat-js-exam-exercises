@@ -9,7 +9,7 @@ window.addEventListener("load", start);
 const products = [
   {
     name: "makrel",
-    price: 18,
+    price: 50,
     inStock: false,
   },
   {
@@ -25,14 +25,18 @@ const products = [
 ];
 
 function start() {
+<<<<<<< Updated upstream
   showProduct();
+=======
+  showProducts();
+>>>>>>> Stashed changes
 
   document
     .querySelector("#select-sort-by")
     .addEventListener("change", sortProducts);
 }
 
-function showProduct() {
+function showProducts() {
   for (const product of products) {
     const html = /*html */ `
         
@@ -52,6 +56,7 @@ function sortProducts() {
   const selectElement = document.getElementById("select-sort-by");
   const selectValue = selectElement.value;
 
+<<<<<<< Updated upstream
   let sortedProducts;
 
   if (selectValue === "name") {
@@ -60,11 +65,25 @@ function sortProducts() {
     sortedProducts = products.sort((a, b) => a.price - b.price);
   } else if (selectValue === "inStock") {
     sortedProducts = products.sort((a, b) => b.inStock - a.inStock);
+=======
+  let sortedProduct;
+
+  if (selectValue === "name") {
+    sortedProduct = products.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (selectValue === "price") {
+    sortedProduct = products.sort((a, b) => a.price - b.price);
+  } else if (selectValue === "inStock") {
+    sortedProduct = products.sort((a, b) => b.inStock - a.inStock);
+>>>>>>> Stashed changes
   }
 
   document.querySelector("#list-container").innerHTML = "";
 
+<<<<<<< Updated upstream
   for (const product of sortedProducts) {
+=======
+  for (const product of sortedProduct) {
+>>>>>>> Stashed changes
     const html = /*html */ `
         
         <li>${product.name} - ${product.inStock}</li>
