@@ -35,7 +35,8 @@ function showProducts(products) {
     
     `;
     document.querySelector("#products").insertAdjacentHTML("beforeend", html);
-
+    //hvis vi ikke laver en en arrow funtion retunere undefined fordi vi ikke har adgang til parameteren uden arrow funktion.
+    // hvis vi kun skirve addToBasket event objekt istedet.
     document
       .querySelector("#products article:last-child")
       .addEventListener("click", () => addToBasket(product));
@@ -49,13 +50,26 @@ function addToBasket(product) {
   //vi skal clear the basket hver gang vi tilføjer et nyt roduct
   //ellers vil den loope hele procutet og dublikere de samme produter igen og igen.
 
-  document.querySelector("#basket").innerHTML = "";
-
+  //vi skal kunne indsætte det i t-body - når tbody er det tr
+  //hvis vi gør det som li tilføjer den efter t-body
+  document.querySelector("#basket tbody").innerHTML = "";
 
   for (const product of basket) {
     const myhtml = /*html */ `
-      <li>${product.name} </li>
+     <tr>
+              <td>
+                <button class="remove">-</button>
+                  ANTAL
+                <button class="add">+</button>
+              </td>
+              <td>${product.name}</td>
+              <td>${product.price}</td>
+              <td>PRIS I ALT,-</td>
+            </tr> 
     `;
     document.querySelector("#basket").insertAdjacentHTML("beforeend", myhtml);
   }
 }
+
+
+

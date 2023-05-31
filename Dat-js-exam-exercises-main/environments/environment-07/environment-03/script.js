@@ -37,7 +37,7 @@ function showProduct() {
   const sortProduct = products.sort((a, b) => b.inStock - a.inStock);
 
   for (const product of sortProduct) {
-    const html = `
+    const html =/*html */ `
         
         <li>${product.name} - ${product.inStock}</li>
         
@@ -58,22 +58,19 @@ function createNewProduct(event) {
 
   const name = form.name.value;
   const price = Number(form.price.value);
-  const inStock = form.stock.value;
+  const inStock = form.stock.checked;
 
-  const newproduct = addProduct(name, price, inStock);
+  const newproduct = {
+    name,
+    price,
+    inStock,
+  };
 
   products.push(newproduct);
   console.log(newproduct);
   showProduct(newproduct);
 }
 
-function addProduct(name, price, inStock) {
-  return {
-    name,
-    price,
-    inStock,
-  };
-}
 /*
 
 window.addEventListener("load", start);
@@ -130,3 +127,4 @@ function showStudents() {
   }
 }
 */
+

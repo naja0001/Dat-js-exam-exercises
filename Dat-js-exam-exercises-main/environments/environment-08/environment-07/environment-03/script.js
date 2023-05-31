@@ -26,6 +26,10 @@ const products = [
 
 function start() {
   showProduct();
+
+  document
+    .querySelector("#select-sort-by")
+    .addEventListener("change", sortProducts);
 }
 
 function showProduct() {
@@ -48,12 +52,28 @@ function sortProducts() {
   const selectElement = document.getElementById("select-sort-by");
   const selectValue = selectElement.value;
 
+  let sortedProducts;
+
   if (selectValue === "name") {
-    product.sort((a, b) => a.name.localeCompare(b.name));
+    sortedProducts = products.sort((a, b) => a.name.localeCompare(b.name));
   } else if (selectValue === "price") {
-    product.sort((a, b) => a.price - b.price);
+    sortedProducts = products.sort((a, b) => a.price - b.price);
   } else if (selectValue === "inStock") {
-    product.sort((a, b) => b.inStock - a.inStock);
+    sortedProducts = products.sort((a, b) => b.inStock - a.inStock);
+  }
+
+  document.querySelector("#list-container").innerHTML = "";
+
+  for (const product of sortedProducts) {
+    const html = /*html */ `
+        
+        <li>${product.name} - ${product.inStock}</li>
+        
+        `;
+
+    document
+      .querySelector("#list-container")
+      .insertAdjacentHTML("beforeend", html);
   }
 }
 /*
