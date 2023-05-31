@@ -6,21 +6,40 @@
 
 window.addEventListener("load", start);
 
-const students = [];
-console.log(students)
+let students = [];
+console.log(students);
 
-function start() {}
+function start() {
+  document.querySelector("#btn1").addEventListener("click", createNewStudent);
+
+  showStudents();
+}
 
 function createNewStudent(event) {
-  event.preventdefault();
+  event.preventDefault();
 
   const form = event.target;
 
   const name = form.name.value;
   const email = form.email.value;
-  const age = form.age.value;
+  const age = Number(form.age.value);
 
   let newStudent = { name, email, age };
 
   students.push(newStudent);
+
+  showStudents();
+}
+
+function showStudents() {
+  for (const student of students) {
+    const html = /*html */ `
+    
+    ${student.name} - ${student.email} - ${student.age}
+    
+    `;
+    document
+      .querySelector("#list-container")
+      .insertAdjacentHTML("beforeend", html);
+  }
 }
