@@ -2,7 +2,7 @@
 
 //1. Lav en funktion der indlæser JSON-filen `users.json` og gemmer listen i en global variabel.
 //2. Lav en funktion der viser listen på websiden - vis kun aktive brugere.
-//3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties, 
+//3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties,
 // og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.
 
 window.addEventListener("load", start);
@@ -13,7 +13,7 @@ async function start() {
   await getUsers();
   showUsers();
   console.log(users);
-  CreateUser();
+  createNewUser();
 }
 
 async function getUsers() {
@@ -37,15 +37,15 @@ function showUsers() {
   }
 }
 
+function createNewUser(name, active, role) {
+  let newUser = { name, active, role };
 
-function CreateUser(name, active, role) {
-/*const newUser {
-  this.name = name;
-  this.Active = active;
-  this.Role = role*/
+  users.push(newUser);
+
+  showUsers(users);
 }
 
-
+createNewUser("Naima", true, "admin");
 //const newUser = users.push(new CreateUser("Naima", true, "admin"));
 
 /*

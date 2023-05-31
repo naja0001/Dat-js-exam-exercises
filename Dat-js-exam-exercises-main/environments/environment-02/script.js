@@ -8,10 +8,8 @@ async function start() {
   const users = await getUsers();
   console.log(users);
 
-  for (const user of users) {
-    showUsers(user);
-    console.log(users);
-  }
+  showUsers(users);
+  countUsers(users);
 }
 
 async function getUsers() {
@@ -25,23 +23,24 @@ async function getUsers() {
 function showUsers(users) {
   console.log(users);
 
-  const myUsers = /* html */ `
+  for (const user of users) {
+    const myUsers = /* html */ `
 
 <div>
 
-<p>${users.name} ${users.active} ${users.role} </p>
+<p>${user.name} ${user.active} ${user.role} </p>
 
 </div>
 `;
 
-  document
-    .querySelector("#list-container")
-    .insertAdjacentHTML("beforeend", myUsers);
+    document
+      .querySelector("#list-container")
+      .insertAdjacentHTML("beforeend", myUsers);
+  }
 }
-
 //3. Lav en funktion der tæller hvor mange brugere der har rollerne `admin`, `user` og `guest` - og viser antallene på websiden.
 
-function countUsers() {
+function countUsers(users) {
   let adminCount = 0;
   let guestCount = 0;
   let userCount = 0;
@@ -56,9 +55,7 @@ function countUsers() {
     }
   }
 
-  return {
-    admin: adminCount,
-    guest: guestCount,
-    user: userCount,
-  };
+  document.querySelector("#admin-count").textContent = adminCount;
+  document.querySelector("#guest-count").textContent = guestCount;
+  document.querySelector("#user-count").textContent = userCount;
 }
