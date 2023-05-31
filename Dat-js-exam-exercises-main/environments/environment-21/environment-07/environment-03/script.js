@@ -1,20 +1,19 @@
 "use strict";
 
 //1. Lav en funktion der opretter et `student` objekt med `name`, `email` og `age`, fra formularen på websiden og tilføjer det til en liste.
-//2. Udskriv listen til websiden hver gang der bliver tilføjet en ny student.
-//3. Sortér listen efter `age` så de yngste vises først.
+//2. Lav en anden funktion til at vise listen på websiden, men undlad eventuelle students der er under 18 år.
+//3. Sortér listen alfabetisk efter `name`.
 
 window.addEventListener("load", start);
 
 let students = [];
-console.log(students);
 
 function start() {
+  console.log("yaaay");
+
   document
     .querySelector("#create-student-form")
     .addEventListener("submit", createNewStudent);
-
-  showStudents();
 }
 
 function createNewStudent(event) {
@@ -29,26 +28,28 @@ function createNewStudent(event) {
   const newStudent = { name, email, age };
 
   students.push(newStudent);
+  console.log(students);
 
   showStudents();
 }
 
 function showStudents() {
-  const sortByAge = students.sort((a, b) => a.age - b.age);
-
+  const sortByName = students.sort((a, b) => a.name.localeCompare(b.name));
   document.querySelector("#students-table-body").innerHTML = "";
-  for (const student of sortByAge) {
-    const html = /*html */ `
-    
-   <tr>
+
+  for (const student of sortByName) {
+    if (student.age >= 18) {
+      const html = /*html */ `
+      
+      <tr>
             <td>${student.name}</td>
             <td>${student.email}</td>
             <td>${student.age}</td>
           </tr>
-    
-    `;
-    document
-      .querySelector("#students-table-body")
-      .insertAdjacentHTML("beforeend", html);
+      `;
+      document
+        .querySelector("#students-table-body")
+        .insertAdjacentHTML("beforeend", html);
+    }
   }
 }
