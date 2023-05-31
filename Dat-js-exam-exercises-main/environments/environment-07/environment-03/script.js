@@ -68,11 +68,7 @@ function createNewProduct(event) {
 
   products.push(newproduct);
   console.log(newproduct);
-<<<<<<< Updated upstream
-  showProduct(newproduct);
-=======
   showProduct();
->>>>>>> Stashed changes
 }
 
 /*
