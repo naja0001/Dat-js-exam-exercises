@@ -4,24 +4,19 @@ body {
     color: lightskyblue;
 }
 
-main {
-    display: flex;
-    gap: 1em;
-}
-
-#form-container form {
+form {
     display: grid;
-    grid-template-columns: auto auto;
-    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em 0em;
+    max-width: 16em;
+    align-items: center;
 }
 
-#form-container form button {
-    grid-column: 2;
-    width: 60%;
-    justify-self: end;
+form button {
+    grid-column: 1 / 3;
 }
 
-#list-container {
-    border-left: 1px solid lightblue;
-    padding-left: 1em;
+button,
+input {
+    padding: 0.5em;
 }
