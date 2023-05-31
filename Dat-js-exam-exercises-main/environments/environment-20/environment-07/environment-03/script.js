@@ -10,7 +10,9 @@ let students = [];
 console.log(students);
 
 function start() {
-  document.querySelector("#btn1").addEventListener("click", createNewStudent);
+  document
+    .querySelector("#create-student-form")
+    .addEventListener("submit", createNewStudent);
 
   showStudents();
 }
@@ -21,10 +23,10 @@ function createNewStudent(event) {
   const form = event.target;
 
   const name = form.name.value;
-  const email = form.email.value;
+  const email = form.mail.value;
   const age = Number(form.age.value);
 
-  let newStudent = { name, email, age };
+  const newStudent = { name, email, age };
 
   students.push(newStudent);
 
@@ -32,14 +34,21 @@ function createNewStudent(event) {
 }
 
 function showStudents() {
-  for (const student of students) {
+  const sortByAge = students.sort((a, b) => a.age - b.age);
+
+  document.querySelector("#students-table-body").innerHTML = "";
+  for (const student of sortByAge) {
     const html = /*html */ `
     
-    ${student.name} - ${student.email} - ${student.age}
+   <tr>
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.age}</td>
+          </tr>
     
     `;
     document
-      .querySelector("#list-container")
+      .querySelector("#students-table-body")
       .insertAdjacentHTML("beforeend", html);
   }
 }
