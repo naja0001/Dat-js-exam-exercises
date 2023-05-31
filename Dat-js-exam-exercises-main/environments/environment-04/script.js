@@ -13,7 +13,10 @@ async function start() {
   await getUsers();
   showUsers();
   console.log(users);
+<<<<<<< Updated upstream
   createNewUser();
+=======
+>>>>>>> Stashed changes
 }
 
 async function getUsers() {
@@ -37,6 +40,7 @@ function showUsers() {
   }
 }
 
+<<<<<<< Updated upstream
 function createNewUser(name, active, role) {
   let newUser = { name, active, role };
 
@@ -46,6 +50,18 @@ function createNewUser(name, active, role) {
 }
 
 createNewUser("Naima", true, "admin");
+=======
+function CreateNewUser(name, active, role) {
+  const newUser = { name, active, role };
+
+  users.push(newUser);
+  showUsers();
+}
+
+CreateNewUser("Naima", true, "admin");
+console.log(users);
+
+>>>>>>> Stashed changes
 //const newUser = users.push(new CreateUser("Naima", true, "admin"));
 
 /*
