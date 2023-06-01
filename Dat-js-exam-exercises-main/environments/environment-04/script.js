@@ -4,7 +4,7 @@
 //2. Lav en funktion der viser listen på websiden - vis kun aktive brugere.
 //3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties,
 // og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.
-
+/*
 window.addEventListener("load", start);
 
 let users = [];
@@ -26,7 +26,7 @@ function showUsers() {
   const activeUsers = users.filter((user) => user.active);
 
   for (const user of activeUsers) {
-    const html = /*html */ ` <li>${user.name} - aktive: ${user.active}</li>
+    const html =  ` <li>${user.name} - aktive: ${user.active}</li>
 
     `;
 
@@ -106,3 +106,53 @@ function opretUser(name, active, role) {
 //spørg peter/race hvorfor den er undefined
 
 */
+
+//1. Lav en funktion der indlæser JSON-filen `users.json` og gemmer listen i en global variabel.
+//2. Lav en funktion der viser listen på websiden - vis kun aktive brugere.
+//3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties,
+// og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.
+
+window.addEventListener("load", start);
+
+let users = [];
+
+async function start() {
+  await getUsers();
+
+  console.log(users);
+
+  showUsers();
+}
+
+async function getUsers() {
+  const response = await fetch("users.json");
+  users = await response.json();
+}
+
+function showUsers() {
+  const filterAktiveUsers = users.filter((user) => user.active);
+
+  for (const user of filterAktiveUsers) {
+    const html = /*html */ `
+    <li> ${user.name} - ${user.active} </li>
+    `;
+    document
+      .querySelector("#teachers-list")
+      .insertAdjacentHTML("beforeend", html);
+  }
+}
+
+function createNewUser(name, role, active) {
+  document.querySelector("#teachers-list").innerHTML = "";
+
+  const newUser = { name, role, active };
+
+  users.push(newUser);
+
+  showUsers();
+}
+
+createNewUser("Naima", "admin", true);
+createNewUser("hans", "admin", true);
+
+console.log(users);

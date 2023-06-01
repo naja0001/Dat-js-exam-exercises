@@ -3,7 +3,7 @@
 //1. Lav en liste med tre `product`-objekter. Hvert objekt har følgende properties: `name` (string), `price` (number) og `inStock` (boolean).
 //2. Lav en funktion der viser listen af alle `product`-objekter på websiden.
 //3. Lav en funktion der kan sortere listen efter `name`, `price` og `inStock`. Sorteringen skal ske på baggrund af valgte `option` i `select` (se `environment-03`). Sortering ændrer sig hver gang en ny sortering `option` vælges.
-
+/*
 window.addEventListener("load", start);
 
 const products = [
@@ -34,7 +34,7 @@ function start() {
 
 function showProducts() {
   for (const product of products) {
-    const html = /*html */ `
+    const html =  `
         
         <li>${product.name} - ${product.inStock}</li>
         
@@ -65,7 +65,7 @@ function sortProducts() {
   document.querySelector("#list-container").innerHTML = "";
 
   for (const product of sortedProduct) {
-    const html = /*html */ `
+    const html =  `
         
         <li>${product.name} - ${product.inStock}</li>
         
@@ -75,7 +75,7 @@ function sortProducts() {
       .querySelector("#list-container")
       .insertAdjacentHTML("beforeend", html);
   }
-}
+}*/
 /*
 function filterCourses() {
   const selectElement = document.querySelector("#select-filter-ects");
@@ -110,3 +110,62 @@ function filterCourses() {
       .insertAdjacentHTML("beforeend", myhtml);
   }
 }*/
+
+//1. Lav en liste med tre `product`-objekter. Hvert objekt har følgende properties: `name` (string), `price` (number) og `inStock` (boolean).
+//2. Lav en funktion der viser listen af alle `product`-objekter på websiden.
+//3. Lav en funktion der kan sortere listen efter `name`, `price` og `inStock`. Sorteringen skal ske på baggrund af valgte `option` i `select` (se `environment-03`). Sortering ændrer sig hver gang en ny sortering `option` vælges.
+
+window.addEventListener("load", start);
+
+function start() {
+  showproducts();
+
+  document
+    .querySelector("#select-sort-by")
+    .addEventListener("change", sortBySelect);
+}
+
+const products = [
+  {
+    name: "salat",
+    price: 10,
+    inStock: true,
+  },
+  {
+    name: "makrel",
+    price: 15,
+    inStock: false,
+  },
+  {
+    name: "tunsalat",
+    price: 18,
+    inStock: true,
+  },
+];
+
+function showproducts() {
+  for (const product of products) {
+    const html = /*html */ `
+    <li> ${product.name} - ${product.price} - ${product.inStock} </li>
+    `;
+    document
+      .querySelector("#list-container")
+      .insertAdjacentHTML("beforeend", html);
+  }
+}
+
+function sortBySelect() {
+  const selectValue = document.querySelector("#select-sort-by").value;
+
+  if (selectValue == "name") {
+    products.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (selectValue === "price") {
+    products.sort((a, b) => a.price - b.price);
+  } else if (selectValue === "inStock") {
+    products.sort((a, b) => b.inStock - a.inStock);
+  }
+
+  document.querySelector("#list-container").innerHTML = "";
+
+  showproducts();
+}
