@@ -76,18 +76,20 @@ window.addEventListener("load", start);
 function start() {
   showCourses();
 
-  document.querySelector("#select-filter-ects").addEventListener("change", filteredCourses)
+  document
+    .querySelector("#select-filter-ects")
+    .addEventListener("change", filteredCourses);
 }
 
 function showCourses() {
-  for (const course of courses) {
+  courses.forEach((course) => {
     const html = /*html */ `
     <li> ${course.name} - ${course.ectsPoints} </li>
     `;
     document
       .querySelector("#courses-list")
       .insertAdjacentHTML("beforeend", html);
-  }
+  });
 }
 
 function filteredCourses() {
@@ -108,13 +110,45 @@ function filteredCourses() {
   }
 
   document.querySelector("#courses-list").innerHTML = "";
-
+  /*
+  //for of
   for (const course of filteredCourse) {
-    const html = /*html */ `
+    const html =  `
     <li> ${course.name} - ${course.ectsPoints} </li>
     `;
     document
       .querySelector("#courses-list")
       .insertAdjacentHTML("beforeend", html);
   }
+
+  // for in
+  for (let object in filteredCourse) {
+    const html = `
+    <li> ${filteredCourse[object].name} - ${filteredCourse[object].ectsPoints} </li>
+    `;
+    document
+      .querySelector("#courses-list")
+      .insertAdjacentHTML("beforeend", html);
+  }
+
+  //forEach
+  filteredCourse.forEach((course) => {
+    const html = `
+    <li> ${course.name} - ${course.ectsPoints} </li>
+    `;
+    document
+      .querySelector("#courses-list")
+      .insertAdjacentHTML("beforeend", html);
+  });
+*/
+  /*
+  //for
+  for (let i = 0; i < filteredCourse.length; i++) {
+    const html = `
+    <li> ${filteredCourse[i].name} - ${filteredCourse[i].ectsPoints} </li>
+    `;
+    document
+      .querySelector("#courses-list")
+      .insertAdjacentHTML("beforeend", html);
+  }*/
 }

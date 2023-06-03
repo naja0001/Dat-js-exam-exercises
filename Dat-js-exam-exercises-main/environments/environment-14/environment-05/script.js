@@ -16,8 +16,25 @@ function showCourses() {
   const sortCoursesByDate = courses.sort((a, b) =>
     a.startDate.localeCompare(b.startDate)
   );
-  for (const course of sortCoursesByDate) {
-    const html = /*html */ `
+
+  //for in
+  /*
+  for (let object in sortCoursesByDate) {
+    const html =  `
+    
+    <li> ${sortCoursesByDate[object].name} -  ${sortCoursesByDate[object].startDate} -  ${courses[object].ectsPoints} </li>
+    
+    
+    `;
+    document
+      .querySelector("#courses-list")
+      .insertAdjacentHTML("beforeend", html);
+  }*/
+
+  //forEach
+  /*
+  courses.forEach((course) => {
+    const html = `
     
     <li> ${course.name} -  ${course.startDate} -  ${course.ectsPoints} </li>
     
@@ -26,5 +43,52 @@ function showCourses() {
     document
       .querySelector("#courses-list")
       .insertAdjacentHTML("beforeend", html);
+  });*/
+
+  //for of
+  /*
+  for (const course of courses) {
+    const html = `
+    
+    <li> ${course.name} -  ${course.startDate} -  ${course.ectsPoints} </li>
+    
+    
+    `;
+    document
+      .querySelector("#courses-list")
+      .insertAdjacentHTML("beforeend", html);
+  }*/
+
+  //for loop
+  /*
+  for (let i = 0; i < courses.length; i++) {
+    const html =  `
+    
+    <li> ${courses[i].name} -  ${courses[i].startDate} -  ${courses[i].ectsPoints} </li>
+    
+    
+    `;
+    document
+      .querySelector("#courses-list")
+      .insertAdjacentHTML("beforeend", html);
+  }
+  */
+
+  //for while
+
+  let i = 0;
+
+  while (i < courses.length) {
+    const html = `
+    
+    <li> ${courses[i].name} -  ${courses[i].startDate} -  ${courses[i].ectsPoints} </li>
+    
+    
+    `;
+    document
+      .querySelector("#courses-list")
+      .insertAdjacentHTML("beforeend", html);
+
+    i++;
   }
 }
