@@ -52,6 +52,7 @@ window.addEventListener("load", start);
 
 async function start() {
   const users = await getUsers();
+
   console.log(users);
 
   showUsers(users);
@@ -64,12 +65,12 @@ async function getUsers() {
 }
 
 function showUsers(users) {
-  const filteredUsers = users.filter((user) => user.role === "admin");
-  for (const user of filteredUsers) {
-    const html = /*html */ `
+  //const filteredUsers = users.filter((user) => user.role === "admin");
+  for (const user of users) {
+    const myhtml = /*html */ `
     <li>${user.name} - ${user.active} - ${user.role}</li>
     `;
 
-    document.querySelector("#userlist").insertAdjacentHTML("beforeend", html);
+    document.querySelector("#userlist").insertAdjacentHTML("beforeend", myhtml);
   }
 }

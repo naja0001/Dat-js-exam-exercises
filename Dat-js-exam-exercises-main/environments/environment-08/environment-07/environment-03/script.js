@@ -117,23 +117,10 @@ function filterCourses() {
 
 window.addEventListener("load", start);
 
-function start() {
-  showproducts();
-
-  document
-    .querySelector("#select-sort-by")
-    .addEventListener("change", sortBySelect);
-}
-
 const products = [
   {
-    name: "salat",
-    price: 10,
-    inStock: true,
-  },
-  {
     name: "makrel",
-    price: 15,
+    price: 14,
     inStock: false,
   },
   {
@@ -141,11 +128,26 @@ const products = [
     price: 18,
     inStock: true,
   },
+  {
+    name: "brød",
+    price: 20,
+    inStock: false,
+  },
 ];
 
-function showproducts() {
+function start() {
+  console.log("yaay");
+
+  showProducts();
+
+  document
+    .querySelector("#select-sort-by")
+    .addEventListener("change", selectByOption);
+}
+
+function showProducts() {
   for (const product of products) {
-    const html = /*html */ `
+    const html = /*html*/ `
     <li> ${product.name} - ${product.price} - ${product.inStock} </li>
     `;
     document
@@ -154,18 +156,21 @@ function showproducts() {
   }
 }
 
-function sortBySelect() {
+function selectByOption() {
+  console.log("click");
   const selectValue = document.querySelector("#select-sort-by").value;
-
-  if (selectValue == "name") {
-    products.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (selectValue === "price") {
-    products.sort((a, b) => a.price - b.price);
-  } else if (selectValue === "inStock") {
-    products.sort((a, b) => b.inStock - a.inStock);
-  }
 
   document.querySelector("#list-container").innerHTML = "";
 
-  showproducts();
+  let sortedProducts;
+
+  if (selectValue === "name") {
+    sortedProducts = products.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (selectValue === "price") {
+    sortedProducts = products.sort((a, b) => a.price - b.price);
+  } else if (selectValue === "inStock") {
+    sortedProducts = products.sort((a, b) => b.inStock - a.inStock);
+  }
+  showProducts(sortedProducts);
 }
+
