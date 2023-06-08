@@ -6,47 +6,47 @@
 
 window.addEventListener("load", start);
 
-let students = [];
-console.log(students);
+const students = [];
 
 function start() {
   document
     .querySelector("#create-student-form")
-    .addEventListener("submit", createNewStudent);
-
-  showStudents();
+    .addEventListener("submit", CreateByForm);
 }
 
-function createNewStudent(event) {
+function CreateByForm(event) {
   event.preventDefault();
 
   const form = event.target;
 
   const name = form.name.value;
-  const email = form.email.value;
   const age = Number(form.age.value);
+  const email = form.email.value;
 
-  const newStudent = { name, email, age };
-
-  students.push(newStudent);
+  createNewStudent(name, email, age);
 
   showStudents();
 }
 
+function createNewStudent(name, email, age) {
+  const newStudent = { name, email, age };
+
+  students.push(newStudent);
+
+  console.log(newStudent);
+}
+
 function showStudents() {
-  const sortByAge = students.sort((a, b) => a.age - b.age);
+  students.sort((a, b) => a.age - b.age);
 
   document.querySelector("#students-table-body").innerHTML = "";
-  for (const student of sortByAge) {
+  for (const student of students) {
     const html = /*html */ `
-    
-   <tr>
+          <tr>
             <td>${student.name}</td>
             <td>${student.email}</td>
             <td>${student.age}</td>
-          </tr>
-    
-    `;
+          </tr> `;
     document
       .querySelector("#students-table-body")
       .insertAdjacentHTML("beforeend", html);

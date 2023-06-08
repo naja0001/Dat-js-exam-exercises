@@ -14,9 +14,14 @@ window.addEventListener("load", start);
 function start() {
   console.log(songs);
   showsongs();
+
+  document
+    .querySelector("#sort-songs-form")
+    .addEventListener("change", selectSortBy);
 }
 
 function showsongs() {
+  document.querySelector("#songlist").innerHTML = "";
   for (const song of songs) {
     const html = /*html */ `
     <li> ${song.artist} -${song.title} - ${song.duration} <button>upvote</button></li>
@@ -32,7 +37,23 @@ function upVote(song) {
   console.log("clicked");
 
   const indexOf = songs.indexOf(song);
+  
 
-  songs.splice(indexOf - 1);
+  if (indexOf > 0) {
+    songs.splice(indexOf, 1); // Fjern sang fra listen
+    songs.splice(indexOf - 1, 0, song); // Indsæt sang et tak op i listen 0 meaning u dont want to remove anything
+    showsongs(); // Udskriv listen igen
+  }
+}
+
+function selectSortBy(event) {
+  const selectOption = event.target.value;
+
+  console.log(selectOption);
+  sortBy(selectOption);
+}
+
+function sortBy(key) {
+  songs.sort((a, b) => a[key].localeCompare(b[key]));
   showsongs();
 }
